@@ -1,0 +1,5 @@
+.idea
+venv
+
+config.py
+vk_config.v2.json
