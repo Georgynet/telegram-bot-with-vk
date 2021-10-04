@@ -1,3 +1,4 @@
+import config
 import vk_api
 from getpass import getpass
 
@@ -7,8 +8,15 @@ def auth_handler():
     return input("Enter authentication code: "), remember_device
 
 
-def auth():
-    login, password = input("Enter login: "), getpass()
+def auth() -> vk_api:
+    login = config.login
+    if not login:
+        login = input("Enter login: ")
+
+    password = config.password
+    if not password:
+        password = getpass()
+
     vk_session = vk_api.VkApi(
         login, password,
         auth_handler=auth_handler
